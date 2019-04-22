@@ -1,11 +1,11 @@
 ultimo :: [Int]->Int
 ultimo [] = -1
-ultimo [z] = z
+ultimo [a] = a
 ultimo (a:x) = ultimo x 
 
 pegaposicao :: [Int]->Int->Int
 pegaposicao (a:x) 0 = a
-pegaposicao (a:x) c = pegaposicao x (c-1)
+pegaposicao (a:x) c = pegaposicao x (c-1)--fafafape
 
 
 pega :: Int->[Int]->[Int]
@@ -25,4 +25,53 @@ tamanho [] = 0
 tamanho (a:x) = 1+tamanho x 
 
 media :: [Int] ->Float
-media l =  (fromIntegral (soma l)) / (fromIntegral (tamanho l))
+media l = (fromIntegral (soma l)) / (fromIntegral (tamanho l))
+
+pegamaiores3 :: [Int] -> [Int]
+pegamaiores3 [] = []
+pegamaiores3 (a:x)
+        |a>3 = a: pegamaiores3 x
+        |otherwise = pegamaiores3 x
+
+concatena :: [Int]->[Int]->[Int]
+concatena l1 l2 = l1 ++ l2
+
+intercala :: [Int]->[Int]->[Int]
+intercala [] (b:x) = []
+intercala (a:x) [] = []
+intercala [] [] = []
+intercala (a:z) (b:x) = a:b: intercala z x -- nao ta 100%
+       
+
+compress :: [Int]->[Int]
+compress [] = []
+compress (a:b:x)       
+        |a == b = b : compress x
+        |otherwise = a: b : compress x -- nao ta 100%
+
+
+encode :: [Int]->(Int,Int)
+encode [] = []
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
