@@ -50,22 +50,29 @@ compress (a:b:x)
         |otherwise = a: b : compress x -- nao ta 100%
 
 
-encode :: [Int]->(Int,Int)
-encode [] = []
+{-encode :: [Int]->(Int,Int)
+encode [] = []-}
+
+dupli :: [Int]->[Int]
+dupli[] = []
+dupli (a:x) = (auxdupli a )++ (dupli x)
 
 
+auxdupli :: Int->[Int]
+auxdupli x = [x,x]
 
 
+replica ::Int->[Int]->[Int]
+replica n [] = []
+replica n (a:x) = (auxreplica n a)++ (replica n x)
 
+auxreplica :: Int->Int->[Int]
+auxreplica 0 a = [] 
+auxreplica n a = a: (auxreplica (n-1) (a) ) 
 
-
-
-
-
-
-
-
-
+dropEvery :: Int->[Int]->[Int]
+dropEvery x [] = 0
+dropEvery x
 
 
 
