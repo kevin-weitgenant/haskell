@@ -1,0 +1,19 @@
+sings :: [[a]] -> [a]
+sings l = [head x | x <-l, (length x) == 1]
+
+matches :: Int -> [Int] -> [Int]
+matches a l = [x |x <- l , x == a ]
+
+matches2 :: [Int] -> Int
+matches2 x = length x
+
+elemento :: Int -> [Int] -> Bool
+elemento a l= matches a l /= []
+
+divisores :: Int -> [ Int]
+divisores l = [x | x <- [1 .. l] , (mod l x) == 0]
+
+isPrime :: Int->Bool
+isPrime x
+    |length(divisores x) <=2 = True
+    |otherwise = False
