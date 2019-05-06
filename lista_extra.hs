@@ -71,8 +71,54 @@ auxreplica 0 a = []
 auxreplica n a = a: (auxreplica (n-1) (a) ) 
 
 dropEvery :: Int->[Int]->[Int]
-dropEvery x [] = 0
-dropEvery x
+dropEvery x [] = []
+dropEvery x l = auxdropEvery 1 x l
+
+auxdropEvery :: Int->Int->[Int]->[Int]
+auxdropEvery y x [] = []
+auxdropEvery y x (a:z)
+        |(mod y x) == 0 = auxdropEvery (y+1) x z
+	|otherwise = a: (auxdropEvery (y+1) x z) 
+
+
+split :: Int->String->(String,String)
+split x s = (auxsplit x s, auxsplit2 x s)
+
+
+auxsplit :: Int->String->String
+auxsplit 0 (a:x) = []
+auxsplit y (a:x) = a : auxsplit (y-1) x
+
+auxsplit2 :: Int->String->String
+auxsplit2 1 (a:x) = x
+auxsplit2 y (a:x) = auxsplit2 (y-1) x
+
+
+slice :: Int->Int->String->String
+slice x y s = auxsplit (1+y-x ) (auxsplit2 (x-1) s)
+
+rotate::String->Int->String
+rotate s n 
+	| n>0 = auxsplit (length(s)) (auxsplit2 n (s++s) )
+	|otherwise = auxsplit (length(s)) (auxsplit2 var (s++s) )
+	where var = (length(s) + n)
+
+
+removeAt:: Int->String->(Char,String)
+removeAt n s = (aux1At n s, aux2At var2 s )
+	where var2 = (length (s)  - n +1)
+
+aux2At::Int->String->String
+aux2At n [] = []
+aux2At n (a:x)
+	|n == length(a:x) = aux2At n x
+	|otherwise = a: aux2At n x
+
+
+
+aux1At::Int->String->Char
+aux1At 1 (a:x) = a
+aux1At n (a:x) = aux1At (n-1) x
 
 
 
@@ -82,3 +128,10 @@ dropEvery x
 
 
 
+
+
+
+
+
+
+ 
