@@ -1,0 +1,70 @@
+data Arvore a = Folha a| Nodo a (Arvore a) (Arvore a)
+   deriving(Eq,Show)
+
+arv:: Arvore Int
+arv = Nodo 10 ( Nodo 14 (Folha 15) (Folha 14) ) ( Nodo 3 (Folha 7) (Folha 8 ) )
+
+
+somaArvore:: Arvore Int->Int
+somaArvore (Folha n) = n
+somaArvore (Nodo n a1 a2) = n + somaArvore a1 + somaArvore a2
+
+multiplica :: Arvore Int -> Arvore Int
+multiplica ( Folha n) =  Folha (n * 2)
+multiplica ( Nodo n a1 a2) = Nodo (2* n) ( multiplica a1 ) ( multiplica a2) 
+
+conta:: Arvore Int-> Int
+conta (Folha n) = 1
+conta (Nodo n a1 a2) = 1 + conta a1 + conta a2
+
+verificaInt:: Arvore Int->Int->Int
+verificaInt (Folha n) x = auxVerifica (x==n)
+verificaInt (Nodo n a1 a2) x
+   |n == x = 1 + verificaInt a1 x + verificaInt a2 x
+   |otherwise = verificaInt a1 x + verificaInt a2 x  
+
+auxVerifica::Bool->Int
+auxVerifica True = 1
+auxVerifica False = 0
+
+
+
+refleteArvore::Arvore Int->Arvore Int
+refleteArvore (Folha n) = Folha n
+refleteArvore (Nodo n a1 a2) =   Nodo n (refleteArvore a2) (refleteArvore a1) 
+
+alturaArvore::Arvore Int->Int
+alturaArvore (Folha n) = 1
+alturaArvore (Nodo n a1 a2) = 1 + max (alturaArvore a2)  (alturaArvore a1)  
+
+
+listaArvore::Arvore Int->[Int]
+listaArvore (Folha n) = n
+listaArvore (Nodo n a1 a2) = n : (
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
